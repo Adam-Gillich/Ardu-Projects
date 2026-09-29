@@ -1,0 +1,14 @@
+test0 = ???
+
+# alpha values eg scope#.dat = alpha
+# by removing the if-else and setting alpha manually
+scope1 = 0
+scope2 = 50
+scope3 = 100
+scope4 = 150
+scope5 = 200
+scope6 = 255
+
+# lcd scope
+ch1 = data
+ch2 = clock
