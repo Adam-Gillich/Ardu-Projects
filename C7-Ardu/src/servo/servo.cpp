@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 // Szervo vezerles potenciometerrel (valaszthato feladat)
 //  * a potenciometer allasa szerint all be a szervo karja,
 //  * az LCD-n az alapallapothoz (kozepallas) viszonyitott szog latszik,
@@ -12,24 +10,27 @@
 //    a 10 kOhm-os kulso felhuzoval is mukodik)
 //  * LCD i2c backpack: 5V, GND, DAT -> SDA (20), CLK -> SCL (21)
 
+#include <Arduino.h>
+
 #include "Wire.h"
 #include "Adafruit_LiquidCrystal.h"
 #include <Servo.h>
 
-const int pinPOTM = A0;             // potenciometer csuszkaja
+const int pinPOTM = A0;             // potenciometer kozepso laba
 const int pinSZERVO = 9;            // szervo jelvezeteke
 const int pinGOMB = 7;              // iranyvalto nyomogomb
 
 const int ALAP = 90;                // alapallapot: kozepallas fokban
 const unsigned long PERGES = 50;    // gomb pergesmentesitesi ideje ms
 
-Adafruit_LiquidCrystal lcd(0);      // i2c, 0-s cim (A0-A2 nincs athidalva)
+Adafruit_LiquidCrystal lcd(0);      // i2c, 0-s cim
 Servo szervo;
 
 bool forditott = false;             // megforditott iranyu mukodes
 int gombElozo = HIGH;               // gomb elozo (elfogadott) allapota
 unsigned long gombIdo = 0;          // utolso elfogadott gombvaltas ideje
 int szogElozo = -1;                 // utoljara beallitott szog
+
 
 int olvasPot() {                    // 8 minta atlaga a zaj ellen
   long osszeg = 0;
